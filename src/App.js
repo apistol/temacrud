@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CreateUpdateUser } from "./components/CreateUpdateUser";
-import axios from "axios"
+import axios from "axios";
 
 function App() {
 
@@ -21,7 +21,7 @@ function App() {
 
 
   const updateUser = (id, userNameVal) => {
-    axios.put(`http://localhost:3001/users/${id}`, {userName: userNameVal}).then(res => {
+    axios.put(`http://localhost:3001/users/${id}`, { userName: userNameVal }).then(res => {
       return setUsers(res.data.result)
     })
   }
@@ -34,11 +34,12 @@ function App() {
 
 
   useEffect(() => {
-    axios.get("http://localhost:3001/users").then(res => {
-      setUsers(res.data.result)
-    })
+      axios
+        .get("http://localhost:3001/users")
+        .then( res => {
+          setUsers(res.data.result)
+        })
   }, [])
-
 
   return (
     <div style={{ display: "flex" }}>
@@ -52,7 +53,7 @@ function App() {
       </div>
 
       <div style={{ flexGrow: 1 }}>
-        <CreateUpdateUser userToBeUpdated={userToBeUpdated} createUser={createUser} updateUser={updateUser} setUserToBeUpdated={setUserToBeUpdated}/>
+        <CreateUpdateUser userToBeUpdated={userToBeUpdated} createUser={createUser} updateUser={updateUser} setUserToBeUpdated={setUserToBeUpdated} />
       </div>
     </div>
   );
